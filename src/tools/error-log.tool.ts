@@ -15,10 +15,18 @@ const ErrorLogSchema = z.object({
 
 type ErrorLogParams = z.infer<typeof ErrorLogSchema>;
 
+/**
+ * Strip ANSI escape codes (color sequences) from log output.
+ * The Supervisor logs endpoint returns ANSI-colored text.
+ */
+function stripAnsi(text: string): string {
+  return text.replace(/\x1b\[[0-9;]*m/g, "");
+}
+
 export const errorLogTool: Tool = {
   name: "get_error_log",
   description:
-    "Get the Home Assistant error log. Useful for troubleshooting integrations, automations, and system issues.",
+    "Get the Home Assistant error log. Useful for troubleshooting integrations, automations, and system issues. Works with both standard HA installations (/api/error_log) and HAOS/Supervisor setups (/api/hassio/core/logs).",
   annotations: {
     title: "Get Error Log",
     readOnlyHint: true,
@@ -30,21 +38,39 @@ export const errorLogTool: Tool = {
   execute: async (params: unknown) => {
     try {
       const { lines, search } = params as ErrorLogParams;
+      const headers = {
+        Authorization: `Bearer ${APP_CONFIG.HASS_TOKEN}`,
+      };
 
-      const response = await fetch(`${APP_CONFIG.HASS_HOST}/api/error_log`, {
-        headers: {
-          Authorization: `Bearer ${APP_CONFIG.HASS_TOKEN}`,
-          "Content-Type": "text/plain",
-        },
+      // Try /api/error_log first (standard HA with file-based logging)
+      let response = await fetch(`${APP_CONFIG.HASS_HOST}/api/error_log`, {
+        headers: { ...headers, "Content-Type": "text/plain" },
       });
+
+      let source = "error_log";
+
+      // Fall back to Supervisor core logs (HAOS / Supervised installs)
+      if (!response.ok) {
+        response = await fetch(
+          `${APP_CONFIG.HASS_HOST}/api/hassio/core/logs`,
+          { headers: { ...headers, Accept: "text/plain" } },
+        );
+        source = "supervisor";
+      }
 
       if (!response.ok) {
         throw new Error(
-          `Failed to fetch error log: ${response.status} ${response.statusText}`,
+          `Failed to fetch error log: ${response.status} ${response.statusText}. ` +
+            "Neither /api/error_log nor /api/hassio/core/logs are available.",
         );
       }
 
       let text = await response.text();
+
+      // Supervisor logs contain ANSI color codes
+      if (source === "supervisor") {
+        text = stripAnsi(text);
+      }
 
       if (search) {
         const needle = search.toLowerCase();
@@ -59,7 +85,7 @@ export const errorLogTool: Tool = {
         text = allLines.slice(-lines).join("\n");
       }
 
-      return JSON.stringify({ success: true, log: text });
+      return JSON.stringify({ success: true, source, log: text });
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Unknown error occurred";
