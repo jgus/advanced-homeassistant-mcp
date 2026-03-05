@@ -34,6 +34,7 @@ import { voiceCommandAIParserTool } from "./homeassistant/voice-command-ai-parse
 import { traceTool } from "./homeassistant/trace.tool";
 import { entityStateTool } from "./entity-state.tool";
 import { searchEntitiesTool } from "./search-entities.tool";
+import { errorLogTool } from "./error-log.tool";
 
 // Tool category types
 export enum ToolCategory {
@@ -98,6 +99,8 @@ export const tools: Tool[] = [
   entityStateTool,
   // Powerful entity search
   searchEntitiesTool,
+  // Error log
+  errorLogTool,
 ];
 
 // Function to get a tool by name
@@ -149,4 +152,6 @@ export {
   entityStateTool,
   // Entity search
   searchEntitiesTool,
+  // Error log
+  errorLogTool,
 };
