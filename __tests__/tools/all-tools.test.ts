@@ -32,8 +32,8 @@ describe("Comprehensive Tool Suite Tests", () => {
     });
 
     describe("Tool Registry", () => {
-        test("should have all 19 tools registered", () => {
-            expect(tools.length).toBe(19);
+        test("should have all 35 tools registered", () => {
+            expect(tools.length).toBe(35);
         });
 
         test("should have unique tool names", () => {
@@ -59,23 +59,39 @@ describe("Comprehensive Tool Suite Tests", () => {
             const expectedTools = [
                 "addon",
                 "alarm_control",
+                "animation_control",
                 "automation",
                 "automation_config",
                 "climate_control",
                 "control",
                 "cover_control",
+                "dashboard",
                 "fan_control",
+                "get_entity_state",
+                "get_error_log",
                 "get_history",
                 "get_sse_stats",
+                "light_animation",
+                "light_scenario",
+                "light_showcase",
                 "lights_control",
                 "list_devices",
                 "lock_control",
+                "maintenance",
                 "media_player_control",
                 "notify",
                 "package",
+                "render_template",
                 "scene",
+                "search_entities",
+                "smart_scenarios",
                 "subscribe_events",
+                "switch_control",
+                "trace",
                 "vacuum_control",
+                "voice_command_ai_parser",
+                "voice_command_executor",
+                "voice_command_parser",
             ].sort();
             expect(toolNames).toEqual(expectedTools);
         });
