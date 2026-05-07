@@ -79,7 +79,6 @@ Thumbs.db
 home-assistant.log*
 home-assistant_v2.db
 home-assistant_v2.db-*
-.
 
 #package-lock.json
 yarn.lock
@@ -110,3 +109,6 @@ __pycache__/
 models/
 
 *.code-workspace
+
+# npm
+.npmrc
