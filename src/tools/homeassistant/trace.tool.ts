@@ -7,7 +7,7 @@
 
 import { z } from "zod";
 import { logger } from "../../utils/logger.js";
-import { BaseTool } from "../base-tool.js";
+import { BaseTool } from "../../mcp/BaseTool.js";
 import { MCPContext } from "../../mcp/types.js";
 import { get_hass_ws } from "../../hass/websocket-manager.js";
 import { Tool } from "../../types/index.js";

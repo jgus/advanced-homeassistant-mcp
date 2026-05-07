@@ -74,8 +74,8 @@ export * from "./types.js";
 // Export transport layers
 export { StdioTransport } from "./transports/stdio.transport.js";
 
-// Re-export tools base class
-export { BaseTool } from "../tools/base-tool.js";
+// Re-export tools base class from consolidated location
+export { BaseTool } from "./BaseTool.js";
 
 // Re-export middleware
 export * from "./middleware/index.js";

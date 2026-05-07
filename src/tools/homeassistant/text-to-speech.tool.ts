@@ -9,7 +9,7 @@ import { z } from "zod";
 import { logger } from "../../utils/logger.js";
 import { Tool } from "../../types/index.js";
 import { MCPContext } from "../../mcp/types.js";
-import { BaseTool } from "../base-tool.js";
+import { BaseTool } from "../../mcp/BaseTool.js";
 import { initializeTextToSpeech, type TextToSpeech } from "../../speech/textToSpeech.js";
 
 // Define the schema for TTS parameters

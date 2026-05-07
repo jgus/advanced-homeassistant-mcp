@@ -10,7 +10,7 @@ import { logger } from "../../utils/logger.js";
 import { get_hass } from "../../hass/index.js";
 import { Tool } from "../../types/index.js";
 import { MCPContext } from "../../mcp/types.js";
-import { BaseTool } from "../base-tool.js";
+import { BaseTool } from "../../mcp/BaseTool.js";
 
 interface ExecutionResult {
   success: boolean;
