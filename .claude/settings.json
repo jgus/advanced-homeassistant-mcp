@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(bun install)",
+      "Bash(bun run build:*)",
+      "Bash(bun run lint:*)",
+      "Bash(bun run lint)",
+      "Bash(bun test:*)",
+      "Bash(bun test)",
+      "Bash(bun x tsc:*)",
+      "Bash(nix develop:*)",
+      "Bash(nix flake check:*)",
+      "Bash(nix flake metadata:*)",
+      "Bash(nix flake show:*)",
+      "Bash(nix run '.#lint':*)",
+      "Bash(nix run '.#test':*)",
+      "mcp__homeassistant__get_entity_state",
+      "mcp__homeassistant__get_error_log",
+      "mcp__homeassistant__get_history",
+      "mcp__homeassistant__get_sse_stats",
+      "mcp__homeassistant__list_devices",
+      "mcp__homeassistant__search_entities",
+      "mcp__homeassistant__subscribe_events",
+      "mcp__homeassistant__system_info",
+      "mcp__homeassistant__trace",
+      "mcp__homeassistant__voice_command_ai_parser",
+      "mcp__homeassistant__voice_command_parser"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "homeassistant"
+  ]
+}

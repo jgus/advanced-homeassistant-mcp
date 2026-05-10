@@ -71,6 +71,8 @@ FIXES_*.md
 Thumbs.db
 .eslintcache
 .prettierignore
+.direnv/
+.claude/settings.local.json
 
 # Home Assistant
 .storage
@@ -112,3 +114,7 @@ models/
 
 # npm
 .npmrc
+
+# nix
+result
+result-*
