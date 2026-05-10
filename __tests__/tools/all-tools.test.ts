@@ -73,6 +73,7 @@ describe("Comprehensive Tool Suite Tests", () => {
             "media_player_control",
             "notify",
             "package",
+            "render_template",
             "scene",
             "search_entities",
             "smart_scenarios",
