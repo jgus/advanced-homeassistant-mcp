@@ -58,6 +58,7 @@ describe("Comprehensive Tool Suite Tests", () => {
             "climate_control",
             "control",
             "cover_control",
+            "dashboard",
             "fan_control",
             "get_entity_state",
             "get_error_log",
