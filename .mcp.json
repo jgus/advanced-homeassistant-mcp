@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "homeassistant": {
+      "type": "stdio",
+      "command": "nix",
+      "args": ["run", ".#stdio-server"],
+      "env": {
+        "HASS_HOST": "${HASS_HOST}",
+        "HASS_TOKEN": "${HASS_TOKEN}"
+      }
+    }
+  }
+}
